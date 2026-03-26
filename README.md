@@ -1,9 +1,9 @@
 # DS-4320-Project-1: NYC EMS Limited Resources and Unlimited Calls
 
 ### Executive Summary
-Executive summary, short paragraph explainaing contents of repo in executive form
+#need to do
 
-<br>
+Executive summary, short paragraph explainaing contents of repo in executive form
 
 ---
 
@@ -147,6 +147,7 @@ Three critical decisions shaped the dataset used in this project. First, the raw
 ## Metadata
 
 **Schema**
+#need to do
 
 fhfhf
 
@@ -166,14 +167,14 @@ fhfhf
 
 | Feature Name | Table | Data Type | Description | Example |
 |---|---|---|---|---|
-| CAD_INCIDENT_ID | ALL | Integer | Unique identifier for each CAD incident. Shared join key across all tables. | 101211759 |
+| CAD_INCIDENT_ID | ALL | Integer | Unique identifier for each Computer-Aided Dispatch (CAD) incident. Shared join key across all tables. | 101211759 |
 | INCIDENT_DATETIME | INCIDENTS | Timestamp | Date and time the incident was recorded. | 2010-05-01 12:04:42 |
 | HELD_INDICATOR | INCIDENTS | String (Y/N) | Whether the incident was held/queued before dispatch. | N |
 | INCIDENT_DISPOSITION_CODE | INCIDENTS | Integer | Numeric code for the final outcome of the incident. ~18% null. | 93 |
 | INITIAL_CALL_TYPE | SEVERITY | String | Emergency call category at initial dispatch. | INJURY |
-| INITIAL_SEVERITY_LEVEL_CODE | SEVERITY | Integer | Severity level at initial classification. | 5 |
+| INITIAL_SEVERITY_LEVEL_CODE | SEVERITY | Integer | Severity level at initial classification. 1 being most severe. | 5 |
 | FINAL_CALL_TYPE | SEVERITY | String | Call type category after incident resolution. | INJURY |
-| FINAL_SEVERITY_LEVEL_CODE | SEVERITY | Integer | Severity level after incident resolution. | 5 |
+| FINAL_SEVERITY_LEVEL_CODE | SEVERITY | Integer | Severity level after incident resolution. 1 being most severe. | 5 |
 | VALID_DISPATCH_RSPNS_TIME_INDC | DISPATCH | String (Y/N) | Whether the dispatch response time is a valid measurement. | Y |
 | DISPATCH_RESPONSE_SECONDS_QY | DISPATCH | Integer | Seconds from incident creation to unit dispatch. | 25 |
 | INCIDENT_RESPONSE_SECONDS_QY | DISPATCH | Integer | Seconds from incident creation to unit arrival on scene. ~3.8% null. | 322 |
@@ -194,27 +195,3 @@ fhfhf
 | VALID_DISPATCH_RSPNS_TIME_INDC | 0 | 0.0% | Fully populated. Filter to Y for valid dispatch timing subsets. |
 | INITIAL_SEVERITY_LEVEL_CODE | 0 | 0.0% | No nulls. Compare within call-type cohorts only — scale varies by type. |
 | FINAL_SEVERITY_LEVEL_CODE | 0 | 0.0% | No nulls. Compare to initial code to detect severity escalations. |
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
