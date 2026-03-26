@@ -12,7 +12,7 @@ tpg6hu
 
 DOI: (https://doi.org/10.5281/zenodo.19228345)[https://doi.org/10.5281/zenodo.19228345]
 
-(Press Release)[---------]
+(Press Release)[https://github.com/tcusick8/DS-4320-Project-1/blob/main/Press_Release.md]
 
 (OneDrive Data Folder)[https://1drv.ms/f/c/9e42f755abca0340/IgCP8jmuoy_UQZYjd_i5tb7pAepNvVgFgtUZ0LIixIIMgXQ?e=drhuHn]
 
