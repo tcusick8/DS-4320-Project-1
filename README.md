@@ -105,16 +105,12 @@ Because the full 8 GB file exceeds the memory and storage constraints of a stand
 ```python
 import pandas as pd
 
-# Read/write in chunks
 sampled_df = []
 chunksize = 100000 
 for chunk in pd.read_csv('EMS_Incident_Dispatch_Data_20260315.csv', chunksize=chunksize):
     sampled_df.append(chunk.sample(frac=0.1875)) # 1.5/8 = ~18.75%
 
-final_df = pd.concat(sampled_df)
-final_df.to_csv('EMS.csv', index=False)
-
-EMS_31 = final_df
+EMS_31 = pd.concat(sampled_df)
 
 keep_cols = [
     'CAD_INCIDENT_ID',
@@ -138,15 +134,15 @@ EMS.to_csv('EMS.csv', index=False)
 
 
 **Bias Identification**
-
+The dataset contains several meaningful sources of bias rooted in the data collection process. First, there is reporting bias: the dataset only includes incidents that prompted a 911 call. Emergencies resolved by bystanders, handled via private transport, or never recognized as emergencies are entirely absent, skewing the data toward higher-acuity events and likely underrepresenting lower-severity incidents with clinical significance. Second, geographic and socioeconomic bias is present because call volume, response time, and incident type distributions vary across boroughs and zip codes in ways that reflect underlying inequality. Neighborhoods with higher poverty rates and greater population density exhibit systematically different call patterns that a model could learn and inadvertently encode as a legitimate signal. Third, temporal bias exists because the dataset spans 2005–2026, a period that includes major operational changes to NYC EMS, evolving classification protocols, and the COVID-19 pandemic, which dramatically distorted call volume and type distributions from 2020–2022. Patterns from earlier years may not generalize to current conditions. Finally, label bias affects the target variable itself: FINAL_SEVERITY_LEVEL_CODE is assigned by the responding unit upon arrival on scene, meaning it reflects both true clinical severity and individual responder judgment, thereby introducing inter-rater variability into the ground truth.
 
 
 **Bias Mitigation**
-
+Each identified bias is addressed or bounded as follows. Reporting bias is an irreducible structural limitation of 911-sourced data; it is explicitly acknowledged, and conclusions are scoped accordingly — the model describes dispatch prioritization given that a call was made, not population-level emergency incidence. Geographic bias is mitigated by computing performance metrics (Normalized Discounted Cumulative Gain (NDCG) or precision at k) separately for each borough and for zip codes stratified by median income; if the model systematically underperforms in lower-income areas, fairness-aware re-ranking or training-example re-weighting will be applied. Temporal bias is addressed through chronological train/test splitting — training on incidents before a cutoff date and evaluating on incidents after the cutoff — which prevents temporal leakage and ensures the model is tested on data that resembles its deployment context. Label bias in severity codes is acknowledged as irreducible noise in the ground truth; it is flagged as a key source of uncertainty rather than corrected, since no cleaner labels exist in the dataset. Sampling bias introduced by the chunked random sample is quantified using bootstrap resampling, and all model evaluation metrics are reported with confidence intervals.
 
 
 **Rationale**
-
+Three critical decisions shaped the dataset used in this project. First, the raw 8 GB file was reduced to approximately 1.5 GB via 18.75% random chunk sampling. This was chosen over date-range filtering because it preserves the full 2005–2026 temporal range, all five boroughs, and all call-type categories — a breadth essential for capturing seasonal patterns and long-term trends. The tradeoff is potential underrepresentation of rare call types and geographic combinations, which is documented above and addressed through class weighting during modeling. Second, 13 of 31 columns were retained. The 18 dropped columns fall into two categories: redundant administrative geographies (police precinct, city council district, etc.) that add no predictive signal beyond BOROUGH and ZIPCODE, and post-dispatch operational timestamps that are generated after the dispatch decision is made and therefore cannot be used as model inputs without introducing data leakage. Retaining them would inflate training accuracy but render the model non-functional for real-time deployment. HELD_INDICATOR was specifically kept because it directly flags calls that entered a queue — the core scenario the model is designed to address. Third, FINAL_SEVERITY_LEVEL_CODE was chosen as the target variable rather than INITIAL_SEVERITY_LEVEL_CODE. The initial code reflects the dispatcher's intake assessment — precisely what the model aims to improve upon — so using it as the label would conflate input with output. The final code represents the post-dispatch ground-truth assessment of actual clinical severity, making it the most appropriate available proxy for true urgency despite the variability in responder judgment noted above.
 
 
 
