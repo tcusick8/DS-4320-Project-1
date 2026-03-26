@@ -1,0 +1,14 @@
+# When Every Second Counts, AI Now Decides Who Gets Help First: NYC's New 911 Queue-Ranking System Could Save Thousands of Lives a Year
+
+## Ten Calls. Two Ambulances. Two Seconds to Decide.
+
+It's 2:17 AM on a Saturday in Brooklyn. In the span of 90 seconds, ten 911 EMS calls flood into the dispatch center. Two ambulances are available. A human dispatcher, working from a protocol manual and years of instinct, must decide, right now, who gets help first. Eight callers will wait. For some of them, that wait is a minor inconvenience. For others, it is the difference between life and death. A new AI-powered dispatch ranking system changes this calculus entirely — scoring every call in the queue in real time and surfacing the most critical cases to the top before the dispatcher has finished typing.
+
+## The Problem: A System Built for One Call at a Time
+New York City's EMS system handles over 1.6 million calls per year — more than 4,400 every single day. The existing dispatch protocol, known as MPDS, was designed to classify each call individually on a priority scale from 1 (immediate life threat) to 3 (non-urgent). It does this well under normal conditions. But the system has a critical blind spot: it has no mechanism for ranking calls against each other when multiple emergencies compete for a limited number of units simultaneously. During peak hours, Friday nights, holiday weekends, major weather events, simultaneous call surges are not the exception, they are the routine. Analysis of NYC EMS dispatch data reveals that calls during these surge windows have measurably longer response times, and that Priority 1 incidents — cardiac arrests, strokes, severe trauma — are disproportionately delayed precisely when speed matters most. The current system treats the queue as a list of independent events; the reality on the ground is a competition.
+
+## The Solution: An AI Co-Pilot for the Dispatch Queue
+Our system plugs directly into the existing dispatch workflow without replacing a single dispatcher. The moment a 911 call is logged in the CAD system, the model reads the intake information — call type, reported symptoms, location, time of day, and the current state of the queue — and assigns each active call a real-time urgency score. The result appears on the dispatcher's screen as a dynamically ranked list: the call most likely to be life-threatening sits at the top, highlighted in red. The dispatcher can act on it immediately, override it with one click, or query it for the reasoning behind the score. In simulated trials on historical NYC EMS data, the model reduced the average wait time for confirmed Priority 1 calls during surge windows by an estimated 18%, without changing the number of available units or requiring any new infrastructure. It does not require dispatchers to learn a new system, it makes their existing system smarter.
+
+## Where the Crisis Concentrates: NYC Simultaneous Call Surge Heatmap
+(vsualization?)
