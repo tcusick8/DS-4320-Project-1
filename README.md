@@ -1,18 +1,19 @@
-# Project Details
+# DS-4320-Project-1: NYC EMS Limited Resources and Unlimited Calls
 
-DS-4320-Project-1: ----Project Title-----
+### Executive Summary
+Executive summary, short paragraph explainaing contents of repo in executive form
 
-¿¿(Emergency Medical Services Analysis and Dataset building for Project 1 in DS 4320 Data by Design??)
-----Executive summary, short paragraph explainaing contents of repo in executive form-----
+<br>
 
+---
 
-Thomas Cusick
+Name - Thomas Cusick
 
-tpg6hu
+NetID - tpg6hu
 
-DOI: [https://doi.org/10.5281/zenodo.19228345](https://doi.org/10.5281/zenodo.19228345)
+DOI: - [https://doi.org/10.5281/zenodo.19228345](https://doi.org/10.5281/zenodo.19228345)
 
-[Press Release](https://github.com/tcusick8/DS-4320-Project-1/blob/main/Press_Release.md)
+Press Release - [When Every Second Counts, AI Now Decides Who Gets Help First](https://github.com/tcusick8/DS-4320-Project-1/blob/main/Press_Release.md)
 
 [OneDrive Data Folder](https://1drv.ms/f/c/9e42f755abca0340/IgCP8jmuoy_UQZYjd_i5tb7pAepNvVgFgtUZ0LIixIIMgXQ?e=drhuHn)
 
@@ -33,7 +34,7 @@ License?? - state name of license here and link to file in top level of repo (us
 **Motivation:** In emergency medicine, time is the most critical resource. For cardiac arrest, the chance of survival decreases by roughly 10% for every minute without defibrillation. For stroke, every 15-minute delay in treatment costs the average patient nearly a month of healthy life. Yet across the United States, EMS systems are under mounting pressure: call volumes have risen sharply over the past decade, ambulance staffing shortages have worsened since the COVID-19 pandemic, and urban 911 centers routinely face moments where demand exceeds available units. New York City alone processes over 1.6 million EMS calls per year, more than 4,000 per day, and a significant fraction of those arrive in simultaneous clusters during peak hours, major events, and emergencies. The status quo response to this problem is a human dispatcher applying a memorized priority code matrix, a system that was designed for a different era of call volume and has not been systematically modernized for the age of machine learning. An AI-powered queue ranking model represents a low-barrier, high-impact intervention: it does not replace dispatchers, it augments them, surfacing a ranked list that a human can accept, override, or query in real time. Beyond saving individual lives, a more rational dispatch queue reduces inequities in response time across neighborhoods, reduces ambulance repositioning costs, and provides EMS leadership with a new instrument for measuring and improving dispatch quality at scale. This project lays the analytical groundwork for that system using one of the richest open EMS datasets in the world.
 
 
-[When Every Second Counts, AI Now Decides Who Gets Help First: NYC's New 911 Queue-Ranking System Could Save Thousands of Lives a Year](--------)
+[When Every Second Counts, AI Now Decides Who Gets Help First](Press_Release.md)
 
 
 ## Domain Exposition
