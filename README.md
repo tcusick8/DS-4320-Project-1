@@ -13,7 +13,7 @@ NetID - tpg6hu
 
 DOI: - [https://doi.org/10.5281/zenodo.19228345](https://doi.org/10.5281/zenodo.19228345)
 
-Press Release - [When Every Second Counts, AI Now Decides Who Gets Help First](https://github.com/tcusick8/DS-4320-Project-1/blob/main/Press_Release.md)
+Press Release - [When Every Second Counts, AI Now Decides Who Gets Help First](Press_Release.md)
 
 [OneDrive Data Folder](https://1drv.ms/f/c/9e42f755abca0340/IgCP8jmuoy_UQZYjd_i5tb7pAepNvVgFgtUZ0LIixIIMgXQ?e=drhuHn)
 
@@ -67,7 +67,15 @@ This project sits at the intersection of **emergency medical services (EMS) oper
 
 [Background Reading Folder](https://drive.google.com/drive/folders/1aN9kYJriacFxD4SpTq3pUA4O3I13SS7t?usp=sharing)
 
+**Reading Summaries**
 
+| # | Title | Brief Description | Link |
+|---|---|---|---|
+| 1 | **NYC EMS Incident Dispatch Data** (NYC Open Data) | The primary dataset. Contains millions of EMS dispatch records with call type, priority level, timestamps, borough, and unit response data for New York City. Updated regularly. | [NYC Open Data](https://data.cityofnewyork.us/Public-Safety/EMS-Incident-Dispatch-Data/76xm-jjuj) |
+| 2 | **Forecasting Emergency Medical Service Call Arrival Rates** (Matteson et al., 2011) | Foundational statistical/ML paper on EMS call volume forecasting using dynamic factor models and time-series methods. Establishes the temporal and spatial patterns in call demand — directly relevant to understanding when simultaneous surge windows occur. | [Annals of Applied Statistics](https://arxiv.org/pdf/1107.4919) |
+| 3 | **Emergency Medical Services Dispatch Priority Prediction Using Machine Learning** (Blomberg et al., 2019) | Applies ML to Danish EMS data to predict whether a call requires a Priority 1 response at intake. The closest existing work to our problem; provides modeling baselines and feature engineering strategies. | [PLOS ONE](https://doi.org/10.1371/journal.pone.0225135) |
+| 4 | **Learning to Rank for Information Retrieval** (Liu, 2009) | The canonical textbook chapter/tutorial on learning-to-rank methods (pointwise, pairwise, listwise). Essential technical background for the ranking model architecture this project will use. | [ACM Digital Library](https://dl.acm.org/doi/10.1561/1500000016) |
+| 5 | **Racial and Ethnic Disparities in Emergency Medical Services Response to Cardiac Arrest** (Schieb et al., 2023) | Documents how EMS response time disparities across demographic groups lead to worse outcomes for minority communities — the equity context that makes correct call prioritization not just efficient, but just. | [The New England Journal of Medicine](https://www.nejm.org/doi/full/10.1056/NEJMoa2200798) |
 
 
 
