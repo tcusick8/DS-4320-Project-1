@@ -3,14 +3,14 @@
 DS-4320-Project-1: ----Project Title-----
 
 ¿¿(Emergency Medical Services Analysis and Dataset building for Project 1 in DS 4320 Data by Design??)
-----Executive sumary, short paragraph explainaing contents of repo in executive form-----
+----Executive summary, short paragraph explainaing contents of repo in executive form-----
 
 
 Thomas Cusick
 
 tpg6hu
 
-DOI ------
+DOI: (https://doi.org/10.5281/zenodo.19228345)[https://doi.org/10.5281/zenodo.19228345]
 
 (Press Release)[---------]
 
@@ -60,8 +60,11 @@ Terminology:
 | **Borough** | One of NYC's five administrative divisions (Manhattan, Brooklyn, Queens, The Bronx, Staten Island) — a key geographic feature in the dataset. |
 | **NDCG (Normalized Discounted Cumulative Gain)** | A standard ranking quality metric; measures how well the model places the most urgent calls at the top of the ranked list. |
 
+Domain:
 
+This project sits at the intersection of **emergency medical services (EMS) operations research**, **public safety technology**, and **applied machine learning**. The broader domain is often called *emergency dispatch optimization* or *intelligent public safety systems*, and it draws from clinical medicine (understanding what makes a call life-threatening), operations research (queue theory, resource scheduling), and computer science (real-time decision support, learning-to-rank algorithms). EMS dispatch has historically been governed by rule-based protocols — most prominently the Medical Priority Dispatch System (MPDS) — which assign priority codes through a structured decision tree of dispatcher questions. While these protocols provide consistency, they were not designed to handle the simultaneous queue problem: when ten calls arrive at once and only two ambulances are available, MPDS assigns each call a code independently but offers no mechanism for ranking them relative to each other under scarcity. This is the gap that machine learning is uniquely positioned to fill. NYC's open EMS dispatch dataset represents one of the most detailed public records of urban emergency response in existence, making it an ideal testbed for developing and validating a data-driven queue-ranking system that could be generalized to other major cities.
 
+[Background Reading Folder](https://drive.google.com/drive/folders/1aN9kYJriacFxD4SpTq3pUA4O3I13SS7t?usp=sharing)
 
 
 
