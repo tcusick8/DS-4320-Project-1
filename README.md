@@ -107,8 +107,8 @@ import pandas as pd
 
 sampled_df = []
 chunksize = 100000 
-for chunk in pd.read_csv('EMS_Incident_Dispatch_Data_20260315.csv', chunksize=chunksize):
-    sampled_df.append(chunk.sample(frac=0.1875)) # 1.5/8 = ~18.75%
+for chunk in pd.read_csv('OG_8GB_EMS_Incident_Dispatch_Data_20260315.csv', chunksize=chunksize):
+    sampled_df.append(chunk.sample(frac=0.50))
 
 EMS_31 = pd.concat(sampled_df)
 
@@ -144,7 +144,56 @@ Each identified bias is addressed or bounded as follows. Reporting bias is an ir
 **Rationale**
 Three critical decisions shaped the dataset used in this project. First, the raw 8 GB file was reduced to approximately 1.5 GB via 18.75% random chunk sampling. This was chosen over date-range filtering because it preserves the full 2005–2026 temporal range, all five boroughs, and all call-type categories — a breadth essential for capturing seasonal patterns and long-term trends. The tradeoff is potential underrepresentation of rare call types and geographic combinations, which is documented above and addressed through class weighting during modeling. Second, 13 of 31 columns were retained. The 18 dropped columns fall into two categories: redundant administrative geographies (police precinct, city council district, etc.) that add no predictive signal beyond BOROUGH and ZIPCODE, and post-dispatch operational timestamps that are generated after the dispatch decision is made and therefore cannot be used as model inputs without introducing data leakage. Retaining them would inflate training accuracy but render the model non-functional for real-time deployment. HELD_INDICATOR was specifically kept because it directly flags calls that entered a queue — the core scenario the model is designed to address. Third, FINAL_SEVERITY_LEVEL_CODE was chosen as the target variable rather than INITIAL_SEVERITY_LEVEL_CODE. The initial code reflects the dispatcher's intake assessment — precisely what the model aims to improve upon — so using it as the label would conflate input with output. The final code represents the post-dispatch ground-truth assessment of actual clinical severity, making it the most appropriate available proxy for true urgency despite the variability in responder judgment noted above.
 
+## Metadata
 
+**Schema**
+
+fhfhf
+
+
+**Data**
+
+| Table | Description | Rows | CSV File |
+|-------|-------------|------|----------|
+| INCIDENTS | Core incident records including timestamps, hold status, and disposition codes. | 14,348,689 | [incidents.csv](https://1drv.ms/x/c/9e42f755abca0340/IQBg8p8YiKviQICcbIpYdJ77ATn96-Q5JFByQjimI0YeHpU?e=zpUWL4) |
+| SEVERITY | Call type classification (initial and final) and severity level codes. | 14,348,689 | [severity.csv](https://1drv.ms/x/c/9e42f755abca0340/IQCvcjFDObwgT4E_MaYYL87tARP4CDzAU_kTDYEPdoq1fWc?e=FF3v4N) |
+| DISPATCH | Dispatch and incident response times, plus a validity flag. | 14,348,689 | [dispatch.csv](https://1drv.ms/x/c/9e42f755abca0340/IQBWqWtRl0AXSIBGAc1ezCGtAdoXdrmDGLwEmE4xh7TTEo8?e=LwDswn) |
+| LOCATION | Geographic identifiers (borough and ZIP code) per incident. | 14,348,689 | [location.csv](https://1drv.ms/x/c/9e42f755abca0340/IQAOeMyUFuDdR4rhi2HixqXIATITJ98mMgOPuRj95cXtXzE?e=wcX4q3) |
+
+---
+
+**Data Dictionary** (metadata)
+
+| Feature Name | Table | Data Type | Description | Example |
+|---|---|---|---|---|
+| CAD_INCIDENT_ID | ALL | Integer | Unique identifier for each CAD incident. Shared join key across all tables. | 101211759 |
+| INCIDENT_DATETIME | INCIDENTS | Timestamp | Date and time the incident was recorded. | 2010-05-01 12:04:42 |
+| HELD_INDICATOR | INCIDENTS | String (Y/N) | Whether the incident was held/queued before dispatch. | N |
+| INCIDENT_DISPOSITION_CODE | INCIDENTS | Integer | Numeric code for the final outcome of the incident. ~18% null. | 93 |
+| INITIAL_CALL_TYPE | SEVERITY | String | Emergency call category at initial dispatch. | INJURY |
+| INITIAL_SEVERITY_LEVEL_CODE | SEVERITY | Integer | Severity level at initial classification. | 5 |
+| FINAL_CALL_TYPE | SEVERITY | String | Call type category after incident resolution. | INJURY |
+| FINAL_SEVERITY_LEVEL_CODE | SEVERITY | Integer | Severity level after incident resolution. | 5 |
+| VALID_DISPATCH_RSPNS_TIME_INDC | DISPATCH | String (Y/N) | Whether the dispatch response time is a valid measurement. | Y |
+| DISPATCH_RESPONSE_SECONDS_QY | DISPATCH | Integer | Seconds from incident creation to unit dispatch. | 25 |
+| INCIDENT_RESPONSE_SECONDS_QY | DISPATCH | Integer | Seconds from incident creation to unit arrival on scene. ~3.8% null. | 322 |
+| BOROUGH | LOCATION | String | NYC borough of the incident. | MANHATTAN |
+| ZIPCODE | LOCATION | String | ZIP code of the incident. ~2% null. | 10002 |
+
+---
+
+**Data Dictionary** (uncertainty)
+
+| Feature Name | Null Count | Null % | Notes |
+|---|---|---|---|
+| INCIDENT_DISPOSITION_CODE | ~2,582,764 | ~18.0% | High null rate; may reflect unresolved or cancelled incidents. Exclude or impute with caution. |
+| INCIDENT_RESPONSE_SECONDS_QY | 542,305 | ~3.8% | Likely incidents where units were never dispatched or arrival was not logged. Drop or right-censor for response-time analysis. |
+| ZIPCODE | 292,268 | ~2.0% | Borough is still available. Missing ZIPs can bias ZIP-level aggregations. |
+| DISPATCH_RESPONSE_SECONDS_QY | 0 | 0.0% | Fully populated. Reliable baseline for dispatch performance analysis. |
+| HELD_INDICATOR | 0 | 0.0% | Fully populated. Binary flag safe to use as-is. |
+| VALID_DISPATCH_RSPNS_TIME_INDC | 0 | 0.0% | Fully populated. Filter to Y for valid dispatch timing subsets. |
+| INITIAL_SEVERITY_LEVEL_CODE | 0 | 0.0% | No nulls. Compare within call-type cohorts only — scale varies by type. |
+| FINAL_SEVERITY_LEVEL_CODE | 0 | 0.0% | No nulls. Compare to initial code to detect severity escalations. |
 
 
 
