@@ -13,7 +13,7 @@
 | Press Release | [When Every Second Counts, AI Now Decides Who Gets Help First](Press_Release.md) |
 | Data | [OneDrive Data Folder](https://1drv.ms/f/c/9e42f755abca0340/IgCP8jmuoy_UQZYjd_i5tb7pAepNvVgFgtUZ0LIixIIMgXQ?e=drhuHn) |
 | Pipeline | [Pipeline](https://github.com/tcusick8/DS-4320-Project-1/tree/main/Pipeline) |
-| License | [MIT](LICENSE.md) |
+| License | [MIT](License.md) |
 
 --- 
 
