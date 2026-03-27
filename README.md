@@ -147,19 +147,33 @@ Three critical decisions shaped the dataset used in this project. First, the raw
 ## Metadata
 
 **Schema**
-#need to do
 
-fhfhf
+**EMS.csv**
+| Key | Field | Type |
+|-----|-------|------|
+| PK | CAD_INCIDENT_ID | BIGINT |
+| | INCIDENT_DATETIME | VARCHAR |
+| | INITIAL_CALL_TYPE | VARCHAR |
+| | INITIAL_SEVERITY_LEVEL_CODE | FLOAT |
+| | FINAL_CALL_TYPE | VARCHAR |
+| | FINAL_SEVERITY_LEVEL_CODE ← TARGET | FLOAT |
+| | VALID_DISPATCH_RSPNS_TIME_INDC | VARCHAR |
+| | DISPATCH_RESPONSE_SECONDS_QY | INTEGER |
+| | INCIDENT_RESPONSE_SECONDS_QY | INTEGER |
+| | HELD_INDICATOR | VARCHAR |
+| | INCIDENT_DISPOSITION_CODE | VARCHAR |
+| | BOROUGH | VARCHAR |
+| | ZIPCODE | FLOAT |
 
 
 **Data**
 
 | Table | Description | Rows | CSV File |
 |-------|-------------|------|----------|
-| INCIDENTS | Core incident records including timestamps, hold status, and disposition codes. | 14,348,689 | [incidents.csv](https://1drv.ms/x/c/9e42f755abca0340/IQBg8p8YiKviQICcbIpYdJ77ATn96-Q5JFByQjimI0YeHpU?e=zpUWL4) |
-| SEVERITY | Call type classification (initial and final) and severity level codes. | 14,348,689 | [severity.csv](https://1drv.ms/x/c/9e42f755abca0340/IQCvcjFDObwgT4E_MaYYL87tARP4CDzAU_kTDYEPdoq1fWc?e=FF3v4N) |
-| DISPATCH | Dispatch and incident response times, plus a validity flag. | 14,348,689 | [dispatch.csv](https://1drv.ms/x/c/9e42f755abca0340/IQBWqWtRl0AXSIBGAc1ezCGtAdoXdrmDGLwEmE4xh7TTEo8?e=LwDswn) |
-| LOCATION | Geographic identifiers (borough and ZIP code) per incident. | 14,348,689 | [location.csv](https://1drv.ms/x/c/9e42f755abca0340/IQAOeMyUFuDdR4rhi2HixqXIATITJ98mMgOPuRj95cXtXzE?e=wcX4q3) |
+| INCIDENTS | Core incident records including timestamps, hold status, and disposition codes. | 14,348,689 | [incidents.parquet](https://1drv.ms/u/c/9e42f755abca0340/IQDBh6c58_aWT5mIIeGE5bMIAYxr4thqsYGkb6uAqCw7GbM?e=EooMD8) |
+| SEVERITY | Call type classification (initial and final) and severity level codes. | 14,348,689 | [severity.parquet](https://1drv.ms/u/c/9e42f755abca0340/IQDNFjrqQe_iR6YNS4M_VWIWAc6bp8Sszt4A0VLDsSj6GOg?e=gN3pa4) |
+| DISPATCH | Dispatch and incident response times, plus a validity flag. | 14,348,689 | [dispatch.parquet](https://1drv.ms/u/c/9e42f755abca0340/IQBhegnurtbNQb9gA0Y5_7j5AejBXLW3x_NA9Dy_0C4_KNM?e=d9Y9eC) |
+| LOCATION | Geographic identifiers (borough and ZIP code) per incident. | 14,348,689 | [location.parquet](https://1drv.ms/u/c/9e42f755abca0340/IQCWzOEHS-YVRZsvR0mF0Un4AWQ8HMY9Ph3Dh8H91ligjjw?e=rS4iSG) |
 
 ---
 
@@ -195,3 +209,13 @@ fhfhf
 | VALID_DISPATCH_RSPNS_TIME_INDC | 0 | 0.0% | Fully populated. Filter to Y for valid dispatch timing subsets. |
 | INITIAL_SEVERITY_LEVEL_CODE | 0 | 0.0% | No nulls. Compare within call-type cohorts only — scale varies by type. |
 | FINAL_SEVERITY_LEVEL_CODE | 0 | 0.0% | No nulls. Compare to initial code to detect severity escalations. |
+
+
+
+
+
+
+
+
+
+
