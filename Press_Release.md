@@ -35,6 +35,14 @@ Key outcomes:
 - **Zero additional units or infrastructure** required to achieve this improvement
 - Performance holds across all five boroughs with no degradation in lower-acuity call handling
 
+## The Model in Action: 10 Calls, 2 Ambulances
+
+![Dispatch Priority Chart](Pipeline/dispatch_priority_chart.png)
+
+*Without AI, the first two calls to arrive — a SICK call and a minor injury — receive the
+ambulances. With the model, cardiac arrest and stroke jump to the top. Same resources.
+Better outcomes.*
+
 ## For the People Dispatchers Are Trying to Reach
 
 Faster Priority 1 response directly affects survival outcomes for cardiac arrest, stroke, and severe trauma — the three call types where minutes determine whether a patient is resuscitated, recovers neurological function, or survives at all. A ROC-AUC of 0.707 achieved using only the information a dispatcher has in the first seconds of a call is not just a model metric. It is the difference between a dispatcher getting help to a patient in time, and not.
