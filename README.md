@@ -170,10 +170,10 @@ Three critical decisions shaped the dataset used in this project. First, the raw
 
 | Table | Description | Rows | CSV File |
 |-------|-------------|------|----------|
-| INCIDENTS | Core incident records including timestamps, hold status, and disposition codes. | 14,348,689 | [incidents.parquet](https://1drv.ms/u/c/9e42f755abca0340/IQDBh6c58_aWT5mIIeGE5bMIAYxr4thqsYGkb6uAqCw7GbM?e=EooMD8) |
-| SEVERITY | Call type classification (initial and final) and severity level codes. | 14,348,689 | [severity.parquet](https://1drv.ms/u/c/9e42f755abca0340/IQDNFjrqQe_iR6YNS4M_VWIWAc6bp8Sszt4A0VLDsSj6GOg?e=gN3pa4) |
-| DISPATCH | Dispatch and incident response times, plus a validity flag. | 14,348,689 | [dispatch.parquet](https://1drv.ms/u/c/9e42f755abca0340/IQBhegnurtbNQb9gA0Y5_7j5AejBXLW3x_NA9Dy_0C4_KNM?e=d9Y9eC) |
-| LOCATION | Geographic identifiers (borough and ZIP code) per incident. | 14,348,689 | [location.parquet](https://1drv.ms/u/c/9e42f755abca0340/IQCWzOEHS-YVRZsvR0mF0Un4AWQ8HMY9Ph3Dh8H91ligjjw?e=rS4iSG) |
+| INCIDENTS | Core incident records including timestamps, hold status, and disposition codes. | 14,348,689 | [incidents.parquet](https://1drv.ms/u/c/9e42f755abca0340/IQDXCDac8uugQYhc5KfV7qrqAY3V8F4zAe0tt3c7NCNcfOE?e=Ufnr0t) |
+| SEVERITY | Call type classification (initial and final) and severity level codes. | 14,348,689 | [severity.parquet](https://1drv.ms/u/c/9e42f755abca0340/IQAcp202kmH2SK9jUtKei4bqATDuvCnfd6wISuBoG3_iWDI?e=6Tl8F4) |
+| DISPATCH | Dispatch and incident response times, plus a validity flag. | 14,348,689 | [dispatch.parquet](https://1drv.ms/u/c/9e42f755abca0340/IQC88RqbFDY-TZEYGY0MwbprAXk6knfKkC9AaNCX7my1LC8?e=BQM6Uy) |
+| LOCATION | Geographic identifiers (borough and ZIP code) per incident. | 14,348,689 | [location.parquet](https://1drv.ms/u/c/9e42f755abca0340/IQCG23dItlsZRoBrtaNeb9nkAQ7nq5l1RFjmBCWWuK-pgBs?e=bU40A0) |
 
 ---
 
@@ -194,6 +194,7 @@ Three critical decisions shaped the dataset used in this project. First, the raw
 | INCIDENT_RESPONSE_SECONDS_QY | DISPATCH | Integer | Seconds from incident creation to unit arrival on scene. ~3.8% null. | 322 |
 | BOROUGH | LOCATION | String | NYC borough of the incident. | MANHATTAN |
 | ZIPCODE | LOCATION | String | ZIP code of the incident. ~2% null. | 10002 |
+| FIRST_TO_HOSP_DATETIME | DISPATCH | Timestamp | Date and time the first unit departed the scene en route to a hospital. Null if no transport occurred — used as the target variable proxy for call severity. | 2010-05-01 13:12:04 |
 
 ---
 
