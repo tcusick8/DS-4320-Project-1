@@ -165,6 +165,7 @@ Three critical decisions shaped the dataset used in this project. First, the raw
 | | INCIDENT_DISPOSITION_CODE | VARCHAR |
 | | BOROUGH | VARCHAR |
 | | ZIPCODE | FLOAT |
+| | FIRST_TO_HOSP_DATETIME | BINARY |
 
 
 **Data**
