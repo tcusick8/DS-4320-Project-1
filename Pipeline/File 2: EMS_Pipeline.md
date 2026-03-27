@@ -1,7 +1,7 @@
 # NYC EMS Dispatch Priority Prediction
 ### Predicting Hospital Transport Likelihood to Improve Emergency Resource Allocation
 
-**Course:** DS 3021/4021  
+**Course:** DS 4320  
 **Dataset:** NYC EMS Computer-Aided Dispatch (CAD) — 14,348,689 incidents  
 **Objective:** Build a Random Forest classifier that predicts, at the moment a 911 call is received, whether a patient will require hospital transport — enabling smarter, data-driven prioritization of EMS resources during high-volume surge windows.
 
