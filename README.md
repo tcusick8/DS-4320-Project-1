@@ -126,6 +126,7 @@ keep_cols = [
     'INCIDENT_DISPOSITION_CODE',
     'BOROUGH',
     'ZIPCODE',
+    'FIRST_TO_HOSP_DATETIME'
 ]
 
 EMS = EMS_31[keep_cols]
