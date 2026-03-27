@@ -34,4 +34,4 @@ Faster Priority 1 response directly affects survival outcomes for cardiac arrest
 This system was built with dispatch realities in mind. It does not replace MPDS classification, dispatcher judgment, or existing escalation protocols. It adds one capability the current system lacks: the ability to rank competing calls against each other dynamically, in real time, at the moment it matters most. The dispatchers who use it keep every tool they have. They gain one more.
 
 ---
-*System validated on NYC EMS CAD data. Available for pilot integration with existing CAD infrastructure. Contact [name] for technical briefing and implementation timeline.*
+*System validated on NYC EMS CAD data. Available for pilot integration with existing CAD infrastructure.*
