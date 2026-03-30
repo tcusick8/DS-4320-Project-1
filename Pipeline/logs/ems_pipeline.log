@@ -1,0 +1,86 @@
+2026-03-30 10:33:23 | INFO | ems_pipeline | Connecting to DuckDB
+2026-03-30 10:33:23 | INFO | ems_pipeline | Loading raw CSV into DuckDB: EMS.csv
+2026-03-30 10:33:29 | INFO | ems_pipeline | Creating normalized tables
+2026-03-30 10:33:31 | INFO | ems_pipeline | Exporting tables to parquet under ./tables/
+2026-03-30 10:33:33 | INFO | ems_pipeline | Exported tables/incidents.parquet
+2026-03-30 10:33:34 | INFO | ems_pipeline | Exported tables/severity.parquet
+2026-03-30 10:33:34 | INFO | ems_pipeline | Exported tables/dispatch.parquet
+2026-03-30 10:33:35 | INFO | ems_pipeline | Exported tables/location.parquet
+2026-03-30 10:33:35 | INFO | ems_pipeline | Ingestion + export completed in 12.54s
+2026-03-30 10:33:44 | INFO | ems_pipeline | Verifying table: incidents
+2026-03-30 10:33:47 | INFO | ems_pipeline | Preview (incidents)
+ CAD_INCIDENT_ID   INCIDENT_DATETIME HELD_INDICATOR INCIDENT_DISPOSITION_CODE
+        50013765 2005-01-01 17:26:06              N                        82
+        71350128 2007-05-15 01:06:54              N                        82
+       180101073 2018-01-10 08:28:50              N                        87
+        60743232 2006-03-15 23:05:44              N                    NOTSNT
+        50082167 2005-01-08 17:17:39              N                        82
+2026-03-30 10:33:47 | INFO | ems_pipeline | incidents | Rows: 14,348,689 | Columns: 4
+2026-03-30 10:33:47 | INFO | ems_pipeline | Null counts (incidents): {'CAD_INCIDENT_ID': 0.0, 'INCIDENT_DATETIME': 0.0, 'HELD_INDICATOR': 0.0, 'INCIDENT_DISPOSITION_CODE': 16.0}
+2026-03-30 10:33:47 | INFO | ems_pipeline | Verifying table: severity
+2026-03-30 10:33:47 | INFO | ems_pipeline | Preview (severity)
+ CAD_INCIDENT_ID INITIAL_CALL_TYPE  INITIAL_SEVERITY_LEVEL_CODE FINAL_CALL_TYPE  FINAL_SEVERITY_LEVEL_CODE
+        50013765              DRUG                            4            DRUG                          4
+        71350128            INJURY                            5          INJURY                          5
+       180101073               EDP                            7             EDP                          7
+        60743232             OTHER                            6           OTHER                          6
+        50082167            DIFFBR                            2          DIFFBR                          2
+2026-03-30 10:33:47 | INFO | ems_pipeline | severity | Rows: 14,348,689 | Columns: 5
+2026-03-30 10:33:47 | INFO | ems_pipeline | Null counts (severity): {'CAD_INCIDENT_ID': 0.0, 'INITIAL_CALL_TYPE': 0.0, 'INITIAL_SEVERITY_LEVEL_CODE': 0.0, 'FINAL_CALL_TYPE': 0.0, 'FINAL_SEVERITY_LEVEL_CODE': 0.0}
+2026-03-30 10:33:47 | INFO | ems_pipeline | Verifying table: dispatch
+2026-03-30 10:33:47 | INFO | ems_pipeline | Preview (dispatch)
+ CAD_INCIDENT_ID VALID_DISPATCH_RSPNS_TIME_INDC DISPATCH_RESPONSE_SECONDS_QY INCIDENT_RESPONSE_SECONDS_QY FIRST_TO_HOSP_DATETIME
+        50013765                              Y                           52                          261    2005-01-01 17:48:40
+        71350128                              Y                           50                          158    2007-05-15 01:29:16
+       180101073                              Y                          242                         None                    NaT
+        60743232                              N                            0                         None                    NaT
+        50082167                              Y                           22                          841    2005-01-08 17:54:21
+2026-03-30 10:33:47 | INFO | ems_pipeline | dispatch | Rows: 14,348,689 | Columns: 5
+2026-03-30 10:33:47 | INFO | ems_pipeline | Null counts (dispatch): {'CAD_INCIDENT_ID': 0.0, 'VALID_DISPATCH_RSPNS_TIME_INDC': 0.0, 'DISPATCH_RESPONSE_SECONDS_QY': 0.0, 'INCIDENT_RESPONSE_SECONDS_QY': 541875.0, 'FIRST_TO_HOSP_DATETIME': 4571685.0}
+2026-03-30 10:33:47 | INFO | ems_pipeline | Verifying table: location
+2026-03-30 10:33:47 | INFO | ems_pipeline | Preview (location)
+ CAD_INCIDENT_ID   BOROUGH ZIPCODE
+        50013765    QUEENS    None
+        71350128    QUEENS    None
+       180101073  BROOKLYN   11207
+        60743232    QUEENS    None
+        50082167 MANHATTAN   10039
+2026-03-30 10:33:47 | INFO | ems_pipeline | location | Rows: 14,348,689 | Columns: 3
+2026-03-30 10:33:48 | INFO | ems_pipeline | Null counts (location): {'CAD_INCIDENT_ID': 0.0, 'BOROUGH': 0.0, 'ZIPCODE': 291765.0}
+2026-03-30 10:34:04 | INFO | ems_pipeline | Loading parquet tables into DuckDB
+2026-03-30 10:34:06 | INFO | ems_pipeline | Joining incident features + transport target
+2026-03-30 10:34:17 | INFO | ems_pipeline | Full dataset: 14,348,689 rows
+2026-03-30 10:34:17 | INFO | ems_pipeline | Columns: ['INCIDENT_DATETIME', 'HELD_INDICATOR', 'INITIAL_CALL_TYPE', 'INITIAL_SEVERITY_LEVEL_CODE', 'BOROUGH', 'FIRST_TO_HOSP_DATETIME']
+2026-03-30 10:34:44 | INFO | ems_pipeline | Sampled dataset: 2,000,000 rows
+2026-03-30 10:34:44 | INFO | ems_pipeline | Target distribution (proportion): {1: 0.682, 0: 0.318}
+2026-03-30 10:34:44 | INFO | ems_pipeline | Transported (1): 1,363,592
+2026-03-30 10:34:44 | INFO | ems_pipeline | Not transported (0): 636,408
+2026-03-30 10:35:00 | INFO | ems_pipeline | Train: 1,400,000 rows
+2026-03-30 10:35:01 | INFO | ems_pipeline | Validation: 300,000 rows
+2026-03-30 10:35:01 | INFO | ems_pipeline | Test: 300,000 rows
+2026-03-30 10:36:14 | INFO | ems_pipeline | Training model...
+2026-03-30 10:36:44 | INFO | ems_pipeline | Training complete in 30.36s
+2026-03-30 10:36:44 | INFO | ems_pipeline | Model saved to ems_priority_model.pkl
+2026-03-30 10:37:58 | INFO | ems_pipeline | Validation ROC-AUC: 0.7098
+2026-03-30 10:37:59 | INFO | ems_pipeline | Validation classification report:
+                 precision    recall  f1-score   support
+
+Not Transported       0.45      0.74      0.56     95688
+    Transported       0.83      0.57      0.68    204312
+
+       accuracy                           0.63    300000
+      macro avg       0.64      0.66      0.62    300000
+   weighted avg       0.70      0.63      0.64    300000
+
+2026-03-30 10:37:59 | INFO | ems_pipeline | Test ROC-AUC: 0.7104
+2026-03-30 10:38:00 | INFO | ems_pipeline | Test classification report:
+                 precision    recall  f1-score   support
+
+Not Transported       0.45      0.74      0.56     95660
+    Transported       0.83      0.57      0.68    204340
+
+       accuracy                           0.63    300000
+      macro avg       0.64      0.66      0.62    300000
+   weighted avg       0.71      0.63      0.64    300000
+
+2026-03-30 10:39:54 | INFO | ems_pipeline | Saved ems_model_results.png
