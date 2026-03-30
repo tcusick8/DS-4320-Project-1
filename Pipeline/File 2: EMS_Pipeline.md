@@ -798,7 +798,7 @@ except Exception:
 ```
 
     
-![png](_tmp_EMS_Pipeline_files/_tmp_EMS_Pipeline_17_0.png)
+![png](ems_model_results.png)
     
 
     2026-03-30 10:39:54 | INFO | ems_pipeline | Saved ems_model_results.png
