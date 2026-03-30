@@ -65,7 +65,7 @@ In emergency medicine, time is the most critical resource. For cardiac arrest, t
 This project sits at the intersection of **emergency medical services (EMS) operations research**, **public safety technology**, and **applied machine learning**. The broader domain is often called *emergency dispatch optimization* or *intelligent public safety systems*, and it draws from clinical medicine (understanding what makes a call life-threatening), operations research (queue theory, resource scheduling), and computer science (real-time decision support, learning-to-rank algorithms). EMS dispatch has historically been governed by rule-based protocols — most prominently MPDS — which assign priority codes through a structured decision tree of dispatcher questions. While these protocols provide consistency, they were not designed to handle the simultaneous queue problem: when ten calls arrive at once and only two ambulances are available, MPDS assigns each call a code independently but offers no mechanism for ranking them relative to each other under scarcity. This is the gap that machine learning is uniquely positioned to fill.
 
 > [!TIP]
-> Background reading materials are available in the ![Background Reading Folder](Background Readings)
+> Background reading materials are available in the ![Background Reading Folder](./Background Readings)
 
 
 | # | Title | Brief Description | Link |
